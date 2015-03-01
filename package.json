@@ -1,6 +1,21 @@
 {
+	"name": "react-blog",
 	"version": "0.0.1",
+	"description": "Isomorphic SPA blog engine. ES6 compatiability, Reactjs, immutable data, Flux, Express, Stylus, LESS, Sass/Scss, webpack hot module replacement, and more.",
+	"keywords": ["blog", "isomorphic", "reactjs", "immutable", "flux", "express", "Stylus", "LESS", "Sass", "Scss", "webpack", "hot module replacement", "es6"],
+	"homepage": "",
+	"author": "Andrew Smith <andrew@WeAreSoftwareCraftsmen.com> (http://andrew.codes)",
+	"private": true,
+	"bin": "./bin/blog.js",
 	"main": "./index.js",
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/andrew-codes/react-blog.git"
+	},
+	"bugs": {
+		"url": "https://github.com/andrew-codes/react-blog/issues",
+		"email": "andrew@WeAreSoftwareCraftsmen.com"
+	},
 	"dependencies": {
 		"babel": "^4.6.3",
 		"babel-core": "^4.6.3",
@@ -28,8 +43,12 @@
 		"yargs": "^3.4.4"
 	},
 	"devDependencies": {
+		"chai": "^2.1.0",
 		"gulp": "^3.8.11",
 		"gulp-bg": "0.0.5",
-		"gulp-util": "^3.0.4"
+		"gulp-util": "^3.0.4",
+		"mocha": "^2.1.0",
+		"sinon": "^1.12.2",
+		"sinon-chai": "^2.7.0"
 	}
 }
