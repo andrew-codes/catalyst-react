@@ -2,8 +2,8 @@
 
 import dispatcher from './../Dispatcher';
 
-export function retrieveArticles(numberToRetrieve) {
-	dispatcher.dispatch(retrieveArticles, {
+export function requestArticles(numberToRetrieve) {
+	dispatcher.dispatch(requestArticles, {
 		numberToRetrieve
 	});
 }

@@ -1,6 +1,5 @@
 'use strict';
 
-require('babel/register');
 let ignored = require('./ignoredExtensions');
 ignored.extensions.forEach(function (ext) {
 	require.extensions['.' + ext] = function () {};

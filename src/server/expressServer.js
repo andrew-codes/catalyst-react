@@ -9,10 +9,8 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import csrf from 'csurf';
 import Promise from 'bluebird';
-import Api from './Api';
+import apiMiddleware from './middlewares/apiService';
 import requireDir from 'require-dir';
-import forOf from './../lib/forOf';
-let apis = requireDir('./api');
 
 export default (config) => {
 	return new Promise((resolve) => {
@@ -34,24 +32,9 @@ export default (config) => {
 		server.use(`/${config.buildAssets.public}`, express.static(config.buildAssets.src));
 		server.use(`/${config.assets.public}`, express.static(config.assets.src));
 
-		let handleApi = (req, res) => {
-			Api(req)
-				.execute()
-				.then(function (apiResponse) {
-					res
-						.contentType('application/json')
-						.status(apiResponse.isError ? 500 : 200)
-						.send(apiResponse);
-				});
-		};
-
-		for (let {
-				value
-			}
-			of forOf(apis)) {
-			server.use(value.route(), handleApi);
-		}
-
+		let servicesMap =requireDir('./services');
+		let apis = Object.keys(servicesMap).map(key=> servicesMap[key]);
+		apiMiddleware(server, apis);
 
 		server.use((req, res) => {
 			App.render(req.path, config)

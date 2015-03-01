@@ -26,7 +26,7 @@
 																//   "single" : require single quotes
 																//   "double" : require double quotes
 		"undef"         : true,     // true: Require all non-global variables to be declared (prevents global leaks)
-		"unused"        : true,     // true: Require all defined variables be used
+		"unused"        : false,    // true: Require all defined variables be used
 		"strict"        : true,     // true: Requires all functions run in ES5 Strict Mode
 		"maxparams"     : false,    // {int} Max number of formal params allowed per function
 		"maxdepth"      : false,    // {int} Max depth of nested blocks (within functions)
@@ -72,7 +72,7 @@
 		"jquery"        : false,    // jQuery
 		"mocha"         : true,     // Mocha
 		"mootools"      : false,    // MooTools
-		"node"          : true,    // Node.js
+		"node"          : true,     // Node.js
 		"nonstandard"   : false,    // Widely adopted globals (escape, unescape, etc)
 		"prototypejs"   : false,    // Prototype and Scriptaculous
 		"qunit"         : false,    // QUnit

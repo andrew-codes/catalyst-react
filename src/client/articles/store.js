@@ -13,20 +13,20 @@ export const dispatchToken = dispatcher.register((payload) => {
 	} = payload;
 
 	switch (action) {
-	case actions.receiveArticles:
-		let {
-			articles
-		} = data;
-		articlesCursor(articles => {
-			return articles.withMutations(list => {
-				articles.forEach(article => {
-					list.push(article);
+		case actions.receiveArticles:
+			let {
+				articles
+			} = data;
+			articlesCursor(articles => {
+				return articles.withMutations(list => {
+					articles.forEach(article => {
+						list.push(article);
+					});
 				});
 			});
-		});
-		break;
-	default:
-		break;
+			break;
+		default:
+			break;
 	}
 });
 
