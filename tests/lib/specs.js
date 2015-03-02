@@ -6,5 +6,4 @@ var chaiAsPromised = require('chai-as-promised');
 chai.should();
 chai.use(sinonChai);
 chai.use(chaiAsPromised);
-var bluebird = require('bluebird');
-var sinonAsPromised = require('sinon-as-promised')(bluebird);
+var sinonAsPromised = require('sinon-as-promised');

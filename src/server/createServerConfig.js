@@ -1,17 +1,11 @@
 'use strict';
 
 import ignored from './ignoredExtensions';
-import * as pkg from './../../package.json';
+import pkg from './../../package.json';
+import _ from 'underscore';
 
 export default (config) => {
-	return Object.freeze(Object.assign({
-		isProduction: process.env.NODE_ENV === 'production',
-		piping: {
-			ignore: ignored.extensionsRegExp(),
-			hook: true
-		},
-		port: process.env.PORT || 3000,
-		version: pkg.version,
+	return Object.freeze(_.extend({
 		assets: {
 			public: 'assets',
 			src: 'assets'
@@ -20,5 +14,13 @@ export default (config) => {
 			public: 'build',
 			src: 'build'
 		},
-	}, config));
+	}, config, {
+		isProduction: process.env.NODE_ENV === 'production',
+		piping: {
+			ignore: ignored.extensionsRegExp,
+			hook: true
+		},
+		port: process.env.PORT || 3000,
+		version: pkg.version
+	}));
 };
