@@ -1,7 +1,5 @@
 'use strict';
 
-import apiLocate from './ApiLocator';
-
 export default (server, apis) => {
 	apis.forEach(api => {
 		server.use(api.route(), (req, res) => {

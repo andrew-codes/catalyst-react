@@ -59,3 +59,10 @@ Using Your New Blog
 -------------------
 
 Planning on an admin side to enable adding/updateing/removing published posts in Markdown, upload static assets such as images, and drafting new posts, etc.
+
+Run the tests
+-------------
+
+```bash
+npm test
+```
