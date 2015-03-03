@@ -16,7 +16,6 @@ export default (config) => {
 	const server = express();
 
 	server.use(compression());
-	server.set('state namespace', 'Blog');
 	server.use(logger(config.isProduction ? 'combined' : 'dev'));
 	server.use(cookieParser());
 	server.use(bodyParser.json());
@@ -32,7 +31,6 @@ export default (config) => {
 	server.use(`/${config.assets.public}`, express.static(config.assets.src));
 
 	let servicesMap = requireDir('./services');
-console.log('here');
 	let apis = Object.keys(servicesMap).map(key => servicesMap[key]);
 	apiMiddleware(server, apis);
 
