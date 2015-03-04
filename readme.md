@@ -1,3 +1,4 @@
+[![Stories in Ready](https://badge.waffle.io/andrew-codes/catalyst-react.png?label=ready&title=Ready)](https://waffle.io/andrew-codes/catalyst-react)
 React Blog (name still up for debate)
 =====================================
 
