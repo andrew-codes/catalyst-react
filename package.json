@@ -1,5 +1,5 @@
 {
-	"name": "react-blog",
+	"name": "catalyst-react",
 	"version": "0.0.1",
 	"description": "Isomorphic SPA blog engine. ES6 compatiability, Reactjs, immutable data, Flux, Express, Stylus, LESS, Sass/Scss, webpack hot module replacement, and more.",
 	"keywords": [
