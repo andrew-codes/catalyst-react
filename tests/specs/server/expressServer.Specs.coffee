@@ -129,7 +129,7 @@ Describe 'expressServer', ->
 		Then 'it should call the logger with combined parameter', ->
 			server.use.should.have.been.calledWith loggerOutput
 
-	Describe 'running in production environment', ->
+	Describe 'running in a development environment', ->
 		loggerOutput = {
 			production: false
 		}
