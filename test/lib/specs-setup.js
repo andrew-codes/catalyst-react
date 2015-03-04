@@ -1,5 +1,6 @@
 'use strict';
 
+require('babel/register');
 var chai = require('chai');
 var sinonChai = require('sinon-chai');
 var chaiAsPromised = require('chai-as-promised');
