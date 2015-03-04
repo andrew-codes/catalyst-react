@@ -34,8 +34,9 @@ export default (config) => {
 	let apis = Object.keys(servicesMap).map(key => servicesMap[key]);
 	apiMiddleware(server, apis);
 
+	let app = new App(config);
 	server.use((req, res) => {
-		App.render(req.path, config)
+		app.render(req.path)
 			.then((result) => {
 				res.status(result.status)
 					.send(result.html);
