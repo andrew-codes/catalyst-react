@@ -1,8 +1,9 @@
 [![Stories in Ready](https://badge.waffle.io/andrew-codes/catalyst-react.png?label=ready&title=Ready)](https://waffle.io/andrew-codes/catalyst-react)
-React Blog (name still up for debate)
-=====================================
 
-This is very much so a work in progress, so the blog engine does not currently fully realize this readme; however, for the goals of this project and for future reference:
+Catalyst-React Blog Engine
+==========================
+
+**This is very much so a work in progress**, so the blog engine does not currently fully realize this readme; however, for the goals of this project and for future reference:
 
 This is an customizable, isomorphic blog engine written with a variety of front-end technologies, including:
 
