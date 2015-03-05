@@ -8,12 +8,22 @@ describe('Server', function () {
 		this.createServerConfig = sinon.stub();
 
 		this.expressServer = sinon.stub();
-		this.expectedExpressServer = sinon.stub();
+		this.expectedExpressServer = {
+			use: sinon.spy()
+		};
 		this.expressServer.resolves(this.expectedExpressServer);
 		this.apiMiddleware = sinon.stub();
-		this.service1 = sinon.spy();
-		this.requireDir = sinon.stub().withArgs('./services').returns({
-			'service1': this.service1
+		this.middleware1 = {
+			name: sinon.stub(),
+			handler: sinon.stub()
+		};
+		this.middleware2 = {
+			name: sinon.stub(),
+			handler: sinon.stub()
+		};
+		this.requireDir = sinon.stub().withArgs('./middlewares').returns({
+			'middleware1': this.middleware1,
+			'middleware2': this.middleware2
 		});
 		this.sut = proxy('./../../../src/server/Server', {
 			'./createServerConfig': this.createServerConfig,
@@ -40,9 +50,11 @@ describe('Server', function () {
 			it('it should start the express server with the augmented server config', () => {
 				this.expressServer.should.have.been.calledWith(this.serverConfig);
 			});
-			it('it should register the API middleware', () => {
+			it('it should register each middleware', () => {
 				this.actual.then((server) => {
-					this.apiMiddleware.should.have.been.calledWith(server, [this.service1]);
+					[this.middleware1, this.middleware2].forEach((middleware) => {
+						server.use.should.have.been.calledWith(middleware.route, middleware.handler);
+					});
 				});
 			});
 			it('it should eventually return the express server instance', () => {

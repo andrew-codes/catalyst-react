@@ -9,15 +9,17 @@ let apiMiddleware = require('./middlewares/apiService');
 let createServerConfig = require('./createServerConfig');
 let expressServer = require('./expressServer');
 let requireDir = require('require-dir');
-let servicesMap = requireDir('./services');
-let apis = Object.keys(servicesMap).map(key => servicesMap[key]);
+let middlewareMap = requireDir('./services');
+let middlewares = Object.keys(middlewareMap).map(key => middlewareMap[key]);
 
 module.exports = function (config) {
 
 	function start() {
 		return expressServer(createServerConfig(config))
 			.then(function (server) {
-				apiMiddleware(server, apis);
+				middlewares.forEach((middleware) => {
+					server.use(middleware.route, middleware.handler);
+				});
 				return server;
 			});
 	}
