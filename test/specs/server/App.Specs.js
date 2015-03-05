@@ -36,22 +36,18 @@ describe('App Component', function () {
 			react: this.react
 		});
 
-
-		this.status = this.state.routes.some((route) => {
-			return route.name.toLowerCase() === 'not-found';
-		}) ? 404 : 200;
+		this.status = (state) => {
+			return state.routes.some((route) => {
+				return route.name.toLowerCase() === 'not-found';
+			}) ? 404 : 200;
+		};
 
 		this.expectedHtml = 'some html';
 		this.react.renderToStaticMarkup.withArgs(this.htmlComponent).returns(this.expectedHtml);
-
-		this.bluebird.resolves({
-			html: `<!DOCTYPE html>${this.expectedHtml}`,
-			status: this.status
-		});
 	});
 	describe('given server config and an existing route', () => {
 		beforeEach(() => {
-			this.config = {
+			let config = {
 				version: '2.1.0',
 				isProduction: false,
 				assets: {
@@ -66,13 +62,17 @@ describe('App Component', function () {
 				}]
 			};
 			this.htmlComponent = React.createFactory(HtmlComponent)({
-				isProduction: this.config.isProduction,
-				version: this.config.version,
-				assets: this.config.assets,
-				blog: this.config.blog,
+				isProduction: config.isProduction,
+				version: config.version,
+				assets: config.assets,
+				blog: config.blog,
 				bodyHtml: this.body
 			});
-			this.sut = new this.Sut(this.config);
+			this.bluebird.resolves({
+				html: `<!DOCTYPE html>${this.expectedHtml}`,
+				status: this.status(this.state)
+			});
+			this.sut = new this.Sut(config);
 		});
 		describe('when rendering the component', () => {
 			beforeEach(() => {
@@ -88,7 +88,7 @@ describe('App Component', function () {
 	});
 	describe('given config and a route that does not exists', () => {
 		beforeEach(() => {
-			this.config = {
+			let config = {
 				version: '2.1.0',
 				isProduction: false,
 				assets: {
@@ -102,7 +102,14 @@ describe('App Component', function () {
 					name: 'path'
 				}]
 			};
-			this.state.routes = [{name: 'not-found'}];
+			this.state.routes = [{
+				name: 'not-found'
+			}];
+			this.bluebird.resolves({
+				html: `<!DOCTYPE html>${this.expectedHtml}`,
+				status: this.status(this.state)
+			});
+			this.sut = new this.Sut(config);
 		});
 		describe('when rendering the component', () => {
 			beforeEach(() => {
@@ -110,7 +117,7 @@ describe('App Component', function () {
 			});
 			it('it should eventually resolve with a status of 404', () => {
 				this.actual.should.eventually.be.deep.equal({
-					html: '',
+					html: `<!DOCTYPE html>${this.expectedHtml}`,
 					status: 404
 				});
 			});

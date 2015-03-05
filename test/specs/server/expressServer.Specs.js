@@ -24,11 +24,6 @@ describe('expressServer', function () {
 			json: sinon.stub()
 		};
 		this.csrf = sinon.stub();
-		this.apiMiddleware = sinon.stub();
-		this.service1 = sinon.spy();
-		this.requireDir = sinon.stub().withArgs('./services').returns({
-			'service1': this.service1
-		});
 		this.bluebird = sinon.stub();
 
 		this.sut = proxy('./../../../src/server/expressServer', {
@@ -39,8 +34,6 @@ describe('expressServer', function () {
 			'cookie-parser': this.cookieParser,
 			'body-parser': this.bodyParser,
 			'csurf': this.csrf,
-			'./middlewares/apiService': this.apiMiddleware,
-			'require-dir': this.requireDir,
 			'bluebird': this.bluebird
 		});
 
@@ -132,9 +125,6 @@ describe('expressServer', function () {
 			});
 			it('it should use the configuration\'s assets public path to server static files from the src path', () => {
 				this.server.use.should.have.been.calledWith('/build/public', this.staticBuildAssetSrc);
-			});
-			it('it should register the API middleware', () => {
-				this.apiMiddleware.should.have.been.calledWith(this.server, [this.service1]);
 			});
 			it('it should listen on the configuration port', () => {
 				this.server.listen.should.have.been.calledWith(this.serverConfig.port);

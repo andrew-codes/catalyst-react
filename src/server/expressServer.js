@@ -9,8 +9,6 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import csrf from 'csurf';
 import Promise from 'bluebird';
-import apiMiddleware from './middlewares/apiService';
-import requireDir from 'require-dir';
 
 export default (config) => {
 	const server = express();
@@ -29,10 +27,6 @@ export default (config) => {
 	// server.use(favicon('assets/img/favicon.ico'));
 	server.use(`/${config.buildAssets.public}`, express.static(config.buildAssets.src));
 	server.use(`/${config.assets.public}`, express.static(config.assets.src));
-
-	let servicesMap = requireDir('./services');
-	let apis = Object.keys(servicesMap).map(key => servicesMap[key]);
-	apiMiddleware(server, apis);
 
 	let app = new App(config);
 	server.use((req, res) => {
