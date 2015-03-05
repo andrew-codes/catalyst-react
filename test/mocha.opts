@@ -1,3 +1,0 @@
---ui bdd
---require ./test/lib/specs-setup.js
--R spec
