@@ -1,2 +1,5 @@
 language: node_js
 node_js: stable
+notifications:
+  slack:
+    secure: OtXY7DF4+hJnCrDz6PTr3S7sld3ZtelLpw07phbedX+/YuOn0Lq+F4Bcek4KzSiwXBgBB5ZvdqdIV/K8zgL3FytfS+jUWh4GT/9Cdf6r3lHKGasg0NyT22ZMmP4bw9isdb/T0n9m/HhO5ViGzyNlCi77QECVf5QArYVBayVW6r0=
