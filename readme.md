@@ -3,6 +3,8 @@
 Catalyst-React Blog Engine
 ==========================
 
+[![Join the chat at https://gitter.im/andrew-codes/catalyst-react](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/andrew-codes/catalyst-react?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 **This is very much so a work in progress**, so the blog engine does not currently fully realize this readme; however, for the goals of this project and for future reference:
 
 This is an customizable, isomorphic blog engine written with a variety of front-end technologies, including:
