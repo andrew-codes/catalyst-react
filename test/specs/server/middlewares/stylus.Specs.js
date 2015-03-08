@@ -37,14 +37,14 @@ describe('stylus middleware', function () {
             this.response.status = sinon.stub().returns(this.response);
             this.response.send = sinon.stub().returns(this.response);
         });
-        describe('when executing the route', () => {
+        describe('when handling the route', () => {
             beforeEach(() => {
                 this.expectedCss = 'some css';
                 this.stylusTranspiler = sinon.stub().withArgs(this.request.url).resolves(this.expectedCss);
                 this.sut = proxy('./../../../../src/server/middlewares/stylus', {
                     './transpilers/stylusTranspiler': this.stylusTranspiler
                 });
-                this.sut.execute(this.request, this.response);
+                this.sut.handler(this.request, this.response);
             });
             it('should set the content type to be CSS', () => {
                 this.stylusTranspiler().then(()=> {
