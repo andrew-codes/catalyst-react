@@ -6,9 +6,10 @@ import App from './App';
 import Home from './Home';
 import NotFound from './NotFound';
 
-export default (
-    <Route handler={App} name="app" path="/">
-        <DefaultRoute name="home" handler={Home} />
+export function getRoutes(token) {
+    return [
+        <Route handler={App} name="app" path="/"></Route>,
         <NotFoundRoute name="not-found" handler={NotFound} />
-    </Route>
-);
+    ];
+}
+
