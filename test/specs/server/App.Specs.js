@@ -50,21 +50,14 @@ describe('App Component', function () {
 			let config = {
 				version: '2.1.0',
 				isProduction: false,
-				assets: {
-					public: 'assets/public/path'
-				},
 				blog: {
 					title: 'my title',
 					url: 'my url'
-				},
-				routes: [{
-					name: 'path'
-				}]
+				}
 			};
 			this.htmlComponent = React.createFactory(HtmlComponent)({
 				isProduction: config.isProduction,
 				version: config.version,
-				assets: config.assets,
 				blog: config.blog,
 				bodyHtml: this.body
 			});
@@ -91,16 +84,10 @@ describe('App Component', function () {
 			let config = {
 				version: '2.1.0',
 				isProduction: false,
-				assets: {
-					public: 'assets/public/path'
-				},
 				blog: {
 					title: 'my title',
 					url: 'my url'
-				},
-				routes: [{
-					name: 'path'
-				}]
+				}
 			};
 			this.state.routes = [{
 				name: 'not-found'

@@ -4,10 +4,9 @@ import React from 'react';
 
 export default React.createClass({
 	render() {
-		// Only for production. For dev, it's handled by webpack with livereload.
 		let linkStyles = this.props.isProduction &&
 			<link
-				href={`/${this.props.assets.public}/app.css?v=${this.props.version}`}
+				href={`/assets/bundle/bundle.css?v=${this.props.version}`}
 				rel="stylesheet"
 				ref="appStyles"
 			/>;
@@ -24,7 +23,7 @@ export default React.createClass({
 					<link rel="canonical" href={ this.props.blog.url } ref="canonical" />
 					<link rel="alternate" type="application/rss+xml" title={ this.props.blog.title } href={ this.props.blog.url + '/rss' } ref="rss" />
 				</head>
-				<body dangerouslySetInnerHTML={{__html: this.props.bodyHtml}} ref="bodyEl" />
+				<body dangerouslySetInnerHTML={{__html: this.props.bodyHtml}} />
 			</html>
 		);
 	}

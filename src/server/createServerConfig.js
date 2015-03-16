@@ -9,11 +9,7 @@ export default (config) => {
 		assets: {
 			public: 'assets',
 			src: 'assets'
-		},
-		buildAssets: {
-			public: 'build',
-			src: 'build'
-		},
+		}
 	}, config, {
 		isProduction: process.env.NODE_ENV === 'production',
 		piping: {

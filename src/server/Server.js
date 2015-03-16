@@ -1,30 +1,15 @@
 'use strict';
 
-let ignored = require('./ignoredExtensions');
-ignored.extensions.forEach(function (ext) {
-	require.extensions['.' + ext] = function () {};
-});
+import createServerConfig from './createServerConfig';
+import expressServer from './expressServer';
+import requireDir from 'require-dir';
 
-let apiMiddleware = require('./middlewares/apiService');
-let createServerConfig = require('./createServerConfig');
-let expressServer = require('./expressServer');
-let requireDir = require('require-dir');
-let middlewareMap = requireDir('./services');
-let middlewares = Object.keys(middlewareMap).map(key => middlewareMap[key]);
+export default function (config) {
+    function start() {
+        return expressServer(createServerConfig(config));
+    }
 
-module.exports = function (config) {
-
-	function start() {
-		return expressServer(createServerConfig(config))
-			.then(function (server) {
-				middlewares.forEach((middleware) => {
-					server.use(middleware.route, middleware.handler);
-				});
-				return server;
-			});
-	}
-
-	return {
-		start: start
-	};
+    return {
+        start: start
+    };
 };

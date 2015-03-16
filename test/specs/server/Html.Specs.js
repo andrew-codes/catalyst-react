@@ -32,7 +32,7 @@ describe('Html Component', function() {
 				this.sut = ReactTestUtils.renderIntoDocument(this.Sut(this.props));
 			});
 			it('it should render al link to the built styles', () => {
-					this.sut.refs.appStyles.getDOMNode().href.should.be.equal(`/${this.props.assets.public}/app.css?v=${this.props.version}`);
+					this.sut.refs.appStyles.getDOMNode().href.should.be.equal(`/assets/bundle/bundle.css?v=${this.props.version}`);
 			});
 			it('it should render the page title', () => {
 				this.sut.refs.title.getDOMNode().innerHTML.should.be.equal(this.props.title);

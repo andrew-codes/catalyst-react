@@ -2,6 +2,7 @@
 
 import proxy from 'proxyquire';
 import sinon from 'sinon';
+import path from 'path';
 
 describe('expressServer', function () {
 	beforeEach(() => {
@@ -58,11 +59,8 @@ describe('expressServer', function () {
 		this.cookieParserOutput = {
 			use: 'cookieParser'
 		};
-		this.staticAssetSrc = {
+		this.staticAssets = {
 			use: 'static asset src'
-		};
-		this.staticBuildAssetSrc = {
-			use: 'static build asset src'
 		};
 
 		this.bluebird.resolves({
@@ -80,22 +78,13 @@ describe('expressServer', function () {
 		this.csrf.withArgs({
 			cookie: true
 		}).returns(this.csrfOutput);
-		this.express.static.withArgs('assets/src').returns(this.staticAssetSrc);
-		this.express.static.withArgs('build/src').returns(this.staticBuildAssetSrc);
+		this.express.static.withArgs(path.join(__dirname, './../../../blog/assets')).returns(this.staticAssets);
 	});
 	describe('given a server configuration', () => {
 		beforeEach(() => {
 			this.serverConfig = {
 				port: 3000,
-				isProduction: false,
-				buildAssets: {
-					public: 'build/public',
-					src: 'build/src'
-				},
-				assets: {
-					public: 'assets/public',
-					src: 'assets/src'
-				}
+				isProduction: false
 			};
 		});
 		describe('when creating the server', () => {
@@ -120,30 +109,19 @@ describe('expressServer', function () {
 			it('it should use csrf on requests', () => {
 				this.server.use.should.have.been.calledWith(this.csrfOutput);
 			});
-			it('it should use the configuration\'s assets public path to server static files from the src path', () => {
-				this.server.use.should.have.been.calledWith('/assets/public', this.staticAssetSrc);
-			});
-			it('it should use the configuration\'s assets public path to server static files from the src path', () => {
-				this.server.use.should.have.been.calledWith('/build/public', this.staticBuildAssetSrc);
-			});
 			it('it should listen on the configuration port', () => {
 				this.server.listen.should.have.been.calledWith(this.serverConfig.port);
 			});
+            it('should serve static assets from the correct directory', () => {
+                this.server.use.should.have.been.calledWith('/assets', this.staticAssets)
+            });
 		});
 	});
 	describe('given a server configuration for a production environment', () => {
 		beforeEach(() => {
 			this.serverConfig = {
 				port: 3000,
-				isProduction: true,
-				buildAssets: {
-					public: 'build/public',
-					src: 'build/src'
-				},
-				assets: {
-					public: 'assets/public',
-					src: 'assets/src'
-				}
+				isProduction: true
 			};
 		});
 		describe('when creating the server', () => {

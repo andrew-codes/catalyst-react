@@ -9,6 +9,7 @@ import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import csrf from 'csurf';
 import Promise from 'bluebird';
+import path from 'path';
 
 export default (config) => {
 	const server = express();
@@ -25,9 +26,7 @@ export default (config) => {
 	}));
 
 	// server.use(favicon('assets/img/favicon.ico'));
-	server.use(`/${config.buildAssets.public}`, express.static(config.buildAssets.src));
-	server.use(`/${config.assets.public}`, express.static(config.assets.src));
-
+    server.use('/assets', express.static(path.join(__dirname, './../../blog/assets')));
 	let app = new App(config);
 	server.use((req, res) => {
 		app.render(req.path)

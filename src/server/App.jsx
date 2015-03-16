@@ -5,16 +5,18 @@ import Html from './Html';
 import Promise from 'bluebird';
 import React from 'react';
 import Router from 'react-router';
+import Routes from './../../blog/Routes'
 
 function renderRoute (Handler, config) {
-	// Here we can add some fixtures initial app data and state for client.
 	let data = {};
-	// Set app state here. Isomorphic rendering is safe when stores are stateless.
 	let appHtml = React.renderToString(<Handler />);
-	let appScriptSrc = config.isProduction ? `/${config.buildAssets.public}/app.js?v=` + config.version : `http://localhost:8888/${config.buildAssets.public}/app.js`;
+	let appScriptSrc = config.isProduction ? `/${config.assets.public}/bundle/bundle.js?v=` + config.version : `http://localhost:8888/${config.assets.public}/bundle/bundle.js`;
 	let scriptsHtml = `
 		<script src="${appScriptSrc}"></script>
-		<script>blogApp(${JSON.stringify(data)}, ${JSON.stringify(config.routes)})</script>
+		<script>
+		    var window.__app_state__ = JSON.parse(${JSON.stringify(data)});
+		    blogApp();
+		</script>
 	`;
 	let bodyHtml = appHtml + scriptsHtml;
 	let title = DocumentTitle.rewind();
@@ -39,14 +41,15 @@ function renderRoute (Handler, config) {
 	return `<!DOCTYPE html>${htmlBody}`;
 }
 
-export default class {
+export default class App {
 	constructor(config){
 		this.config = config;
 	}
-	render(path, config) {
+
+	render(path) {
 		return new Promise((resolve) => {
-			Router.run(this.config.routes, path, (Handler, state) => {
-				let html = renderRoute(Handler, config);
+			Router.run(Routes, path, (Handler, state) => {
+				let html = renderRoute(Handler, this.config);
 				let isNotFound = state.routes.some(route => route.name.toLowerCase() === 'not-found');
 				resolve({
 					html: html,
