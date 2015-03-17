@@ -11,7 +11,7 @@ import {cleanCache} from './../lib/cache';
 
 function renderRoute(Handler, config, token, data) {
     let appHtml = React.renderToString(<Handler data={data} />);
-    let appScriptSrc = config.isProduction ? `/${config.assets.public}/bundle/bundle.js?v=` + config.version : `http://localhost:8888/${config.assets.public}/bundle/bundle.js`;
+    let appScriptSrc = config.isProduction ? `/assets/bundle/bundle.js?v=` + config.version : `http://localhost:8888/assets/bundle/bundle.js`;
     let clientHandOff = {token, data: cleanCache(token)};
     let scriptsHtml = `
 		<script>
@@ -54,6 +54,7 @@ class App {
                     resolve({redirect});
                 },
                 onError: function (err) {
+                    console.log(err);
                     reject(err);
                 }
             });

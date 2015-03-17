@@ -84,7 +84,8 @@ describe('expressServer', function () {
 		beforeEach(() => {
 			this.serverConfig = {
 				port: 3000,
-				isProduction: false
+				isProduction: false,
+                dataServices: {}
 			};
 		});
 		describe('when creating the server', () => {
@@ -121,7 +122,8 @@ describe('expressServer', function () {
 		beforeEach(() => {
 			this.serverConfig = {
 				port: 3000,
-				isProduction: true
+				isProduction: true,
+                dataServices: {}
 			};
 		});
 		describe('when creating the server', () => {

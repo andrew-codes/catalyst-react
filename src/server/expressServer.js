@@ -12,6 +12,7 @@ import Promise from 'bluebird';
 import path from 'path';
 import Cookies from 'cookies';
 import uuid from 'uuid';
+import webApiFactory from './api/webApiFactory';
 
 export default (config) => {
     const server = express();
@@ -29,8 +30,15 @@ export default (config) => {
 
     // server.use(favicon('assets/img/favicon.ico'));
     server.use('/assets', express.static(path.join(__dirname, './../../blog/assets')));
+
+    // Setup Web APIs
+    Object.keys(config.dataServices).forEach((key)=> {
+        server.use(`/api/${key}`, webApiFactory(config.dataServices[key]));
+    });
+
     let app = new App(config);
     server.use((req, res) => {
+        res.setHeader('Access-Control-Allow-Origin', '*');
         let cookies = new Cookies(req, res);
         let token = cookies.get('token') || uuid();
         cookies.set('token', token, {maxAge: 30 * 24 * 60 * 60});

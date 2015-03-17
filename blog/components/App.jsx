@@ -2,8 +2,7 @@
 
 import React from 'react';
 import {RouteHandler} from 'react-router';
-import {state} from './../src/ApplicationState';
-import {getContacts} from './../src/api/contactApi';
+import {state} from './../../src/ApplicationState';
 
 export default React.createClass({
     componentWillMount() {

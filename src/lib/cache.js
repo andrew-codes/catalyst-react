@@ -1,8 +1,9 @@
 var cache = {};
 
 var ensureTokenKey = (token) => {
-    if (!cache[token])
+    if (!cache[token]) {
         cache[token] = {};
+    }
 };
 
 export function setCache(token, key, data) {
@@ -16,7 +17,7 @@ export function getFromCache(token, key) {
 }
 
 export function cleanCache(token) {
-    let data = cache[token];
+    var data = cache[token];
     delete cache[token];
     return data;
 }
