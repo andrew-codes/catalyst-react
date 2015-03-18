@@ -107,9 +107,9 @@ describe('expressServer', function () {
 			it('it should use url encoder body parser on requests', () => {
 				this.server.use.should.have.been.calledWith(this.urlencodedOutput);
 			});
-			it('it should use csrf on requests', () => {
-				this.server.use.should.have.been.calledWith(this.csrfOutput);
-			});
+			//it('it should use csrf on post requests', () => {
+			//	this.server.use.should.have.been.calledWith(this.csrfOutput);
+			//});
 			it('it should listen on the configuration port', () => {
 				this.server.listen.should.have.been.calledWith(this.serverConfig.port);
 			});

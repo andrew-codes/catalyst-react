@@ -24,21 +24,21 @@ export default (config) => {
     server.use(bodyParser.urlencoded({
         extended: false
     }));
-    server.use(csrf({
+    let _csrf = csrf({
         cookie: true
-    }));
+    });
+    server.use(_csrf);
 
     // server.use(favicon('assets/img/favicon.ico'));
     server.use('/assets', express.static(path.join(__dirname, './../../blog/assets')));
 
     // Setup Web APIs
     Object.keys(config.dataServices).forEach((key)=> {
-        server.use(`/api/${key}`, webApiFactory(config.dataServices[key]));
+        server.get(`/api/${key}`, webApiFactory(config.dataServices[key]));
     });
 
     let app = new App(config);
     server.use((req, res) => {
-        res.setHeader('Access-Control-Allow-Origin', '*');
         let cookies = new Cookies(req, res);
         let token = cookies.get('token') || uuid();
         cookies.set('token', token, {maxAge: 30 * 24 * 60 * 60});
