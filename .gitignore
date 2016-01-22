@@ -1,5 +1,4 @@
-node_modules
-npm-debug.log
-/web_modules
-/blog/assets/bundle
 .idea
+node_modules
+*.log
+src/client/public/js

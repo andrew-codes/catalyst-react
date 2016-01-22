@@ -1,7 +1,9 @@
 Catalyst-React Blog Engine
 ==========================
 
-[![Join the chat at https://gitter.im/andrew-codes/catalyst-react](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/andrew-codes/catalyst-react?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge) [![Stories in Ready](https://badge.waffle.io/andrew-codes/catalyst-react.png?label=ready&title=Ready)](https://waffle.io/andrew-codes/catalyst-react) ![Build Status](https://travis-ci.org/andrew-codes/catalyst-react.svg?branch=master)
+<iframe src="https://discordapp.com/widget?id=139500841760456704&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
+ 
+![Build Status](https://travis-ci.org/andrew-codes/catalyst-react.svg?branch=master)
 
 **This is very much so a work in progress**, so the blog engine does not currently fully realize this readme; however, for the goals of this project and for future reference:
 
