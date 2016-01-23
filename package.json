@@ -25,10 +25,10 @@
     "clean": "rimraf src/client/public/js",
     "lint": "eslint . ./",
     "test": "cross-env NODE_ENV=test mocha -r build/mocha.config.js --compilers js:babel-register --recursive src/**/*.spec.js",
-    "prebuild": "npm run lint && npm run clean",
     "test:tdd": "npm test -- --watch",
+    "prebuild": "npm run lint && npm test && npm run clean",
     "build": "node bin/compile.js",
-    "dev": "nodemon -r dotenv/config bin/server.js",
+    "start:dev": "nodemon -r dotenv/config bin/server.js",
     "prestart": "cross-env NODE_ENV=production npm run build",
     "start": "cross-env NODE_ENV=production nodemon bin/server.js"
   },
