@@ -4,6 +4,7 @@ import {validateVendor} from './utils';
 export const env = (process.env.NODE_ENV || 'development').toLowerCase();
 export const __PROD__ = env === 'production';
 export const __DEV__ = env === 'development';
+export const __TEST__ = env === 'test';
 export const host = process.env.HOST || 'localhost';
 export const port = process.env.PORT || 3000;
 
