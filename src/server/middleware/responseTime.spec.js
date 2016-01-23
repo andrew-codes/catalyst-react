@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import agent from 'supertest-koa-agent';
 import Koa from 'koa';
-import sut from './reponseTime';
+import sut from './responseTime';
 
 describe('server/middleware/responseTime', function() {
   describe('when a request comes to the server', () => {
