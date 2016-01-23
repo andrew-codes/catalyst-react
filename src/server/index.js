@@ -11,6 +11,7 @@ import * as config from './../../build/config';
 import Html from './Html';
 import webpackDevServer from './middleware/webpack-dev-server';
 import webpackHmr from './middleware/webpack-hmr';
+import responseTime from './middleware/responseTime';
 import {getScripts} from './lib/webpackBuiltAssets';
 import HelloWorld from './../../src/components/HelloWorld';
 const debug = _debug('app:server');
@@ -37,12 +38,7 @@ export default ({url}) => {
     app.use(convert(serve(config.paths.dist())));
   }
 
-  app.use(async (ctx, next) => {
-    const start = new Date();
-    await next();
-    const ms = new Date() - start;
-    ctx.set('X-Response-Time', `${ms}ms`);
-  });
+  app.use(responseTime());
 
   app.use(async (ctx, next) => {
     const isAsset = /\.(js|json)$/.test(ctx.url);
