@@ -20,7 +20,7 @@ npm run dev # runs blog in development mode
 ```
 
 [build-badge]: https://img.shields.io/travis/rust-lang/rust/master.svg?style=flat-square
-[build]: https://travis-ci.org/andrew-codes/catalyst-react
+[build]: https://travis-ci.org/andrew-codes/catalyst-react.svg?branch=master
 
 [npm-dependencies-badge]: https://david-dm.org/andrew-codes/catalyst-react.svg
 
