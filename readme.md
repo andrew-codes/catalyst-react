@@ -1,72 +1,36 @@
-Catalyst-React Blog Engine
-==========================
+# Catalyst-React Blog Engine [![Travis][build-badge]][build] [![Discord][discord-badge]][discord]
 
-<iframe src="https://discordapp.com/widget?id=139500841760456704&theme=dark" width="350" height="500" allowtransparency="true" frameborder="0"></iframe>
- 
-![Build Status](https://travis-ci.org/andrew-codes/catalyst-react.svg?branch=master)
+[![Gratipay][gratipay-badge]][gratipay] [![Twitter][twitter-follow-badge]][twitter]
 
 **This is very much so a work in progress**, so the blog engine does not currently fully realize this readme; however, for the goals of this project and for future reference:
 
-This is an customizable, isomorphic blog engine written with a variety of front-end technologies, including:
+Catalyst is a customizable, fully isomorphic blog written from the ground-up in ES2015 and React, along with a variety of other front-end technologies. It uses Koa as its server and includes hot-reloading when in development mode.
 
--	ES6 support via Babel
--	Reactjs with JSX support
--	Flux
--	Immutable data/state
--	Isomorphic app
--	React-router
--	Styles in for Radium and/or Stylus, LESS or Sass
--	Express
--	Promises via bluebird
--	Blog CLI to get a new blog created quickly
-
-Creating a New Blog
--------------------
+## Getting Started
 
 ```bash
-npm install react-blog -g # install package
-cd ./my-new-blog # change into the directory for you new blog
-blog create
+npm install
+npm start # runs blog in production mode with defaults
 ```
 
-Running your New Blog
----------------------
+## Customizing Blog
 
 ```bash
-cd ./my-new-blog # change into the directory of your new blog
-NODE_ENV=developing node ./server.js
-# open your browser and navigate to http://localhost:3000
+npm run dev # runs blog in development mode
 ```
 
-Customizing Your New Blog
--------------------------
+[build-badge]: https://img.shields.io/travis/rust-lang/rust/master.svg?style=flat-square
+[build]: https://travis-ci.org/andrew-codes/catalyst-react
 
-```bash
-cd ./my-new-blog # change into the directory of your blog
-blog create skin 'my-new-skin-name' # Create a new skin in your blog's directory
-```
+[npm-dependencies-badge]: https://david-dm.org/andrew-codes/catalyst-react.svg
 
-This will create a new skin for your blog that you can further customize. Open the blog's directory with your favorite editor and hack away!
+[npm-dev-dependencies-badge]: https://david-dm.org/dev/andrew-codes/catalyst-react.svg
 
-### What Can I Customize?
+[discord-badge]: https://img.shields.io/badge/Discord-join%20chat%20%E2%86%92-738bd7.svg?style=flat-square
+[discord]: https://discord.gg/0mJKTpyIAAmkz7dY
 
--	The express server
--	Routes
--	React components associated with routes
--	Add your own styles in Radium, Stylus, LESS, or Sass for your custom React components
--	Utilize any of the available blog flux actions
--	Create new APIs from a customizable BasicAPI class
--	Use your own, existing document database connection
--	Create your own custom data persistence connection via creating custom APIs
+[twitter-follow-badge]: https://img.shields.io/twitter/follow/andrew_codes.svg?style=social
+[twitter]: http://twitter.com/intent/user?screen_name=andrew_codes
 
-Using Your New Blog
--------------------
-
-Planning on an admin side to enable adding/updateing/removing published posts in Markdown, upload static assets such as images, and drafting new posts, etc.
-
-Run the tests
--------------
-
-```bash
-npm test
-```
+[gratipay-badge]: https://img.shields.io/gratipay/user/andrew-codes.svg
+[gratipay]: https://gratipay.com/~andrew-codes/
