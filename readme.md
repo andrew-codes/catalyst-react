@@ -19,8 +19,8 @@ npm start # runs blog in production mode with defaults
 npm run dev # runs blog in development mode
 ```
 
-[build-badge]: https://img.shields.io/travis/rust-lang/rust/master.svg?style=flat-square
-[build]: https://travis-ci.org/andrew-codes/catalyst-react.svg?branch=master
+[build-badge]: https://img.shields.io/travis/andrew-codes/catalyst-react/master.svg?style=flat-square
+[build]: https://travis-ci.org/andrew-codes/catalyst-react
 
 [npm-dependencies-badge]: https://david-dm.org/andrew-codes/catalyst-react.svg
 
