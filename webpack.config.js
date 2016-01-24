@@ -3,7 +3,7 @@ import cssnano from 'cssnano';
 import ExtractTextPlugin from 'extract-text-webpack-plugin';
 import {StatsWriterPlugin} from 'webpack-stats-plugin';
 import _debug from 'debug';
-import * as config from './build/config';
+import config from './build/config';
 
 const debug = _debug('app:webpack:config');
 debug('Create configuration.');
