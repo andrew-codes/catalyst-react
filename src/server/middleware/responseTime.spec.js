@@ -1,7 +1,7 @@
 import sinon from 'sinon';
 import agent from 'supertest-koa-agent';
 import Koa from 'koa';
-import sut from './responseTime';
+import responseTime from './responseTime';
 
 describe('server/middleware/responseTime', function() {
   describe('when a request comes to the server', () => {
@@ -21,8 +21,8 @@ describe('server/middleware/responseTime', function() {
         ctx.body = 'hello world';
       });
 
-      sut.__Rewire__('getTimeStamp', getTimeStamp);
-      this.app.use(sut());
+      responseTime.__Rewire__('getTimeStamp', getTimeStamp);
+      this.app.use(responseTime());
     });
     it('it should add the time to process the response to the HTTP headers', done => {
       agent(this.app)
