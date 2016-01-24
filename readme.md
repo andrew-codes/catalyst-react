@@ -16,7 +16,21 @@ npm start # runs blog in production mode with defaults
 ## Customizing Blog
 
 ```bash
-npm run dev # runs blog in development mode
+npm run start:dev # runs blog in development mode
+```
+
+## Developing Blog
+
+```bash
+npm run start:dev # run site in development and watch specs
+```
+
+### Running Specs
+
+```bash
+npm test # run specs
+npm test -- --watch # run specs and watch
+npm test -- --grep grep_pattern # run specs matching grep_pattern
 ```
 
 [build-badge]: https://img.shields.io/travis/andrew-codes/catalyst-react/master.svg?style=flat-square
