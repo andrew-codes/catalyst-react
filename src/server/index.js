@@ -13,7 +13,6 @@ import webpackDevServer from './middleware/webpack-dev-server';
 import webpackHmr from './middleware/webpack-hmr';
 import responseTime from './middleware/responseTime';
 import {getScripts} from './lib/webpackBuiltAssets';
-import HelloWorld from './../../src/components/HelloWorld';
 const debug = _debug('app:server');
 const app = new Koa();
 
@@ -34,6 +33,7 @@ export default ({url}) => {
   }
 
   if (config.__PROD__) {
+    debug('Applying production configuration');
     scripts = getScripts();
     app.use(convert(serve(config.paths.dist())));
   }
@@ -55,7 +55,7 @@ export default ({url}) => {
     // TODO: Handle routes to components here
     ctx.route = {
       title: 'Hello Koa',
-      body: ReactDOMServer.renderToStaticMarkup(<HelloWorld />)
+      body: ''
     };
   });
 

@@ -52,11 +52,13 @@
     "babel-preset-stage-3": "^6.3.13",
     "debug": "^2.2.0",
     "dotenv": "^2.0.0",
+    "history": "^1.17.0",
     "koa": "^2.0.0-alpha.3",
     "koa-convert": "^1.2.0",
     "koa-static": "^2.0.0",
     "react": "^0.14.6",
-    "react-dom": "^0.14.6"
+    "react-dom": "^0.14.6",
+    "react-router": "^2.0.0-rc5"
   },
   "devDependencies": {
     "babel-eslint": "^4.1.6",

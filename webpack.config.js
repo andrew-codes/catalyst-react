@@ -35,7 +35,8 @@ webpackConfig.entry = {
 webpackConfig.output = {
   filename: `[name].[${config.compilerHashType}].js`,
   path: config.paths.dist(),
-  publicPath: config.compilerPublicPath
+  publicPath: config.compilerPublicPath,
+  chunkFilename: '[name]-[chunkhash].js'
 };
 
 // ------------------------------------
@@ -64,6 +65,7 @@ if (config.__DEV__) {
       }
     }),
     new StatsWriterPlugin({
+      chunkModules: true,
       filename: 'stats.json'
     })
   );
@@ -96,7 +98,7 @@ webpackConfig.module.loaders = [
     loader: 'babel',
     query: {
       cacheDirectory: true,
-      plugins: ['transform-runtime'],
+      plugins: ['transform-runtime', 'add-module-exports'],
       presets: config.__DEV__
         ? ['es2015', 'react', 'stage-3', 'stage-2', 'stage-1', 'react-hmre']
         : ['es2015', 'react', 'stage-3', 'stage-2', 'stage-1']
