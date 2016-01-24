@@ -10,7 +10,8 @@
       ],
       "plugins": [
         "transform-runtime",
-        "rewire"
+        "rewire",
+        "add-module-exports"
       ]
     }
   }

@@ -7,12 +7,13 @@ describe('server/middleware/htmlWrapper', function() {
   describe('when a request for a JavaScript resource comes to the server', () => {
     beforeEach(() => {
       this.expected = 'some JavaScript';
+      this.url = 'my Url';
       this.app = new Koa();
       this.app.use(async (ctx, next) => {
         ctx.body = 'some JavaScript';
         await next();
       });
-      this.app.use(sut());
+      this.app.use(sut({url: this.url, scripts: null}));
     });
     it('it should skip this middleware', done => {
       agent(this.app)
@@ -24,12 +25,13 @@ describe('server/middleware/htmlWrapper', function() {
   describe('when a request for a JSON resource comes to the server', () => {
     beforeEach(() => {
       this.expected = 'some JSON';
+      this.url = 'my Url';
       this.app = new Koa();
       this.app.use(async (ctx, next) => {
         ctx.body = 'some JSON';
         await next();
       });
-      this.app.use(sut());
+      this.app.use(sut({url: this.url, scripts: null}));
     });
     it('it should skip this middleware', done => {
       agent(this.app)
@@ -43,15 +45,17 @@ describe('server/middleware/htmlWrapper', function() {
       this.expected = 'Hello Koa';
       this.url = 'base Url';
 
-      const getScripts = sinon.stub().returns([]);
+      const getScripts = sinon.stub().returns(['app.1.js']);
       const Html = sinon.stub();
-      const ReactDOMServer = {
-        renderToStaticMarkup: sinon.stub().withArgs(Html({
+      const HtmlElement = sinon.stub()
+        .withArgs(Html, {
           title: 'Hello Koa',
           body: 'Hello Koa',
-          scripts: [],
+          scripts: ['app.1.js'],
           url: this.url
-        })).returns(this.expected)
+        });
+      const ReactDOMServer = {
+        renderToStaticMarkup: sinon.stub().withArgs(HtmlElement()).returns(this.expected)
       };
 
       this.app = new Koa();
@@ -65,8 +69,9 @@ describe('server/middleware/htmlWrapper', function() {
 
       sut.__Rewire__('getScripts', getScripts);
       sut.__Rewire__('Html', Html);
+      sut.__Rewire__('HtmlElement', HtmlElement);
       sut.__Rewire__('ReactDOMServer', ReactDOMServer);
-      this.app.use(sut({url: this.url, scripts: null}));
+      this.app.use(sut({url: this.url}));
     });
     it('it should render the HTML component with the route\'s title, body, and scripts', done => {
       agent(this.app)
@@ -85,7 +90,7 @@ describe('server/middleware/htmlWrapper', function() {
         renderToStaticMarkup: sinon.stub().withArgs(Html({
           title: 'Hello Koa',
           body: 'Hello Koa',
-          scripts: [],
+          scripts: ['app.1.js'],
           url: this.url
         })).returns(this.expected)
       };
@@ -101,7 +106,7 @@ describe('server/middleware/htmlWrapper', function() {
 
       sut.__Rewire__('Html', Html);
       sut.__Rewire__('ReactDOMServer', ReactDOMServer);
-      this.app.use(sut({url: this.url, scripts: []}));
+      this.app.use(sut({url: this.url, scripts: ['app.1.js']}));
     });
     it('it should render the HTML component with the route\'s title, body, and provided scripts', done => {
       agent(this.app)
