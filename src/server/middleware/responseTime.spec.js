@@ -24,7 +24,7 @@ describe('server/middleware/responseTime', function() {
       sut.__Rewire__('getTimeStamp', getTimeStamp);
       this.app.use(sut());
     });
-    it('it should add the time to process the response to the HTTP headers', (done) => {
+    it('it should add the time to process the response to the HTTP headers', done => {
       agent(this.app)
         .get('/')
         .expect('x-response-time', `${this.ms}ms`)
