@@ -1,4 +1,4 @@
-import {createElement} from 'React';
+import {createElement} from 'react';
 import ReactDOMServer from 'react-dom/server';
 import {getScripts} from './../lib/webpackBuiltAssets';
 import Html from './../Html';
