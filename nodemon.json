@@ -1,9 +1,9 @@
 {
   "verbose": false,
   "ignore": [
-    "dist",
     "coverage",
-    "tests",
-    "src"
+    "src/components",
+    "src/client",
+    "src/**/*.spec.js"
   ]
 }
