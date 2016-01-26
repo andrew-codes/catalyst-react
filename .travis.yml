@@ -3,5 +3,7 @@ node_js:
   - "4.2"
 notifications:
   email:
+    recipients:
+      - andrew@wearesoftwarecraftsmen.com
     on_success: change
     on_failure: always
