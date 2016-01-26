@@ -12,7 +12,7 @@ describe('src/server/middleware/webpackDevServer', function() {
   it('it should return a function', () => {
     Object.prototype.toString.call(this.actual).should.equal('[object Function]');
   });
-  describe('when applying the returned function as koa middleware', () => {
+  describe.skip('when applying the returned function as koa middleware', () => {
     beforeEach(() => {
       this.compiler = sinon.stub();
       this.publicPath = 'a public path URL';
