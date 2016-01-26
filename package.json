@@ -30,7 +30,6 @@
     "prebuild": "npm test && npm run clean",
     "build": "node bin/compile.js",
     "start:dev": "nodemon -r dotenv/config bin/server.js & npm test -- --watch",
-    "prestart": "cross-env NODE_ENV=production npm run build",
     "start": "cross-env NODE_ENV=production nodemon bin/server.js"
   },
   "repository": {
