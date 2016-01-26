@@ -10,16 +10,23 @@ Catalyst is a customizable, fully isomorphic blog written from the ground-up in 
 
 ```bash
 npm install
-npm start # runs blog in production mode with defaults
+npm start # runs blog in development mode
 ```
 
-## Customizing Blog
+## Deployment
+
+Running the deployment task will create a distribution of the site that is ready to be run for production. The
+distribution output should be copied in its **entirety** to the production server. Running the `npm start` task in the
+distribution directory will run the site in production mode.
 
 ```bash
-npm run start:dev # runs blog in development mode
+npm run deployment # creates a distribution for deployment
+
+# Running the deployment
+node dist/index.js
 ```
 
-## Developing Blog
+## Developing
 
 ```bash
 npm run start:dev # run site in development and watch specs

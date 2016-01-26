@@ -97,7 +97,7 @@ webpackConfig.module.loaders = [
     exclude: /node_modules/,
     loader: 'babel',
     query: {
-      cacheDirectory: true,
+      cacheDirectory: false,
       plugins: ['transform-runtime', 'add-module-exports'],
       presets: config.__DEV__
         ? ['es2015', 'react', 'stage-3', 'stage-2', 'stage-1', 'react-hmre']
