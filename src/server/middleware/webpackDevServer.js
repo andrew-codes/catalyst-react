@@ -4,7 +4,7 @@ import _debug from 'debug';
 import config from './../../../build/config';
 const debug = _debug('app:server:webpack-dev');
 
-export default (compiler, publicPath) => {
+export default ({compiler, publicPath}) => async(ctx, next) => {
   debug('Enable webpack dev middleware.');
 
   const middleware = WebpackDevMiddleware(compiler, {
@@ -17,15 +17,13 @@ export default (compiler, publicPath) => {
     stats: config.compilerStats
   });
 
-  return async (ctx, next) => {
-    let hasNext = await applyExpressMiddleware(middleware, ctx.req, {
-      end: function(content) {
-        ctx.body = content.toString('utf8');
-      },
-      setHeader: () => ctx.set.apply(ctx, arguments)
-    });
-    if (hasNext) {
-      await next();
-    }
-  };
+  let hasNext = await applyExpressMiddleware(middleware, ctx.req, {
+    end: function(content) {
+      ctx.body = content.toString('utf8');
+    },
+    setHeader: () => ctx.set.apply(ctx, arguments)
+  });
+  if (hasNext) {
+    await next();
+  }
 };
