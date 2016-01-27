@@ -23,8 +23,8 @@ export default class Html extends Component {
         <title ref="title">{ title }</title>
         <meta name="viewport" content="width=device-width, user-scalable=no" />
         <meta name="HandheldFriendly" content="True" />
-        <link rel="canonical" href={ url } ref="canonical" />
         <link rel="alternate" type="application/rss+xml" title={ title } href={ `${url}/rss` } ref="rss" />
+        <base href={ url } />
       </head>
       <body>
       <div id="root" dangerouslySetInnerHTML={{ __html: body }}></div>
