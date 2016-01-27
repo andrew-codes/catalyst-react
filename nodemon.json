@@ -5,5 +5,8 @@
     "src/components",
     "src/client",
     "src/**/*.spec.js"
-  ]
+  ],
+  "execMap": {
+    "js": "babel-node"
+  }
 }

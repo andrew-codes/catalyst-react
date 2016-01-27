@@ -31,9 +31,9 @@
     "lint": "eslint . ./",
     "test": "find ./src -name '*.spec.js' | xargs cross-env NODE_ENV=test mocha -r build/mocha.config.js --compilers js:babel-register --ui bdd",
     "start:dev": "npm start & npm test -- --watch",
-    "start": "nodemon -r dotenv/config bin/server.js",
+    "start": "nodemon build/scripts/start-dev.js",
     "predeployment": "npm run lint && npm test && npm run clean:deployment",
-    "deployment": "cross-env NODE_ENV=production bin/deployment"
+    "deployment": "build/scripts/deployment"
   },
   "repository": {
     "type": "git",
